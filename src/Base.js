@@ -17,7 +17,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import ProductPane from './productPane';
+import ProductPane from './ProductPane';
+import logo from './wretched_relics.svg';
 
 const drawerWidth = 240;
 
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   appBar: {
+    backgroundColor: "#000000",
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -62,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(10),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -76,9 +78,13 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  paper: {
+    height: 300,
+    width: 300,
+  }
 }));
 
-export default function PersistentDrawerLeft() {
+export default function Base() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -111,7 +117,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Wretched Relics Data Explorer
           </Typography>
         </Toolbar>
       </AppBar>
@@ -148,7 +154,10 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
       </Drawer>
-      <ProductPane></ProductPane>
+      <div className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}><ProductPane/></div>
+      
     </div>
   );
 }

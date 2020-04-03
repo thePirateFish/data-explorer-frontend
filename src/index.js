@@ -1,13 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import logo from './wretched_relics.svg';
-import Grid from '@material-ui/core/Grid';
-import ProductPane from './productPane';
-import Header from './Header';
 import Base from './Base';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -23,46 +19,14 @@ import Base from './Base';
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-class Root extends React.Component {
-  render() {
-    return (
-      <div>
-      <Base></Base>
-      <MainSection></MainSection>
-      </div>
-    )
-  }
-}
-
-class MainSection extends React.Component {
-  render() {
-    return (
-      <div className="main">
-        <ProductPane></ProductPane>
-      </div>
-        )
-  }
-}
-
-// class FilterPane extends React.Component {
-//   render() {
-//     return (
-//       <div className="filter-pane">
-//         Filters go here.
-//         <ul>
-//           <li>Website</li>
-//           <li>Tags</li>
-//           <li>Etc...</li>
-//         </ul>
-//       </div>
-//     )
-//   }
-// }
-
-
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+});
 
 
 ReactDOM.render(
-  React.createElement(Root, null),
+  React.createElement(ApolloProvider,{client: client},
+  React.createElement(Base, null),
+  ),
   document.getElementById('root')
 )
