@@ -1,24 +1,9 @@
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import ProductPane from './ProductPane';
-import logo from './wretched_relics.svg';
+import Header from './Header/Header.js';
+import SideBar from './Sidebar/Sidebar.js';
+import routes from '../routes.js';
 
 const drawerWidth = 240;
 
@@ -100,7 +85,9 @@ export default function Base() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
+      <Header color="dark"></Header>
+      <SideBar routes={routes} bgColor="black"></SideBar>
+      {/* <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -120,8 +107,8 @@ export default function Base() {
             Wretched Relics Data Explorer
           </Typography>
         </Toolbar>
-      </AppBar>
-      <Drawer
+      </AppBar> */}
+      {/* <Drawer
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -137,26 +124,22 @@ export default function Base() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+            <ListItem button key="tags">
+              <ListItemIcon><LocalOfferIcon></LocalOfferIcon></ListItemIcon>
+              <ListItemText primary="Tags" />
             </ListItem>
-          ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+            <ListItem button key="categories">
+              <ListItemIcon><LocalOfferIcon></LocalOfferIcon></ListItemIcon>
+              <ListItemText primary="Categories" />
             </ListItem>
-          ))}
         </List>
-      </Drawer>
-      <div className={clsx(classes.content, {
+      </Drawer> */}
+      {/* <div className={clsx(classes.content, {
           [classes.contentShift]: open,
-        })}><ProductPane/></div>
+        })}><ProductPane/></div> */}
       
     </div>
   );

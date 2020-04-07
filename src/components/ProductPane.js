@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import { Typography } from '@material-ui/core';
 
 const GET_PRODUCTS = gql`
   {
@@ -74,7 +75,7 @@ const { loading, error, data } = useQuery(GET_PRODUCTS);
               <Paper className={classes.paper}  >
                 <div className={classes.product}>
                   <img className={classes.thumb} src={product.image_urls[0]}></img>
-                  <h5>{product.title}</h5>
+                  <Typography color="secondary">{product.title}</Typography>
                 </div>
               </Paper>
             </Grid>
