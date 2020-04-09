@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Typography } from '@material-ui/core';
+import ProductItem from './ProductItem';
 
 const GET_PRODUCTS = gql`
   {
@@ -34,7 +35,10 @@ const GET_PRODUCTS = gql`
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    // display: 'flex',
+    transition: theme.transitions.create('all', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.complex,
+    }),
   },
   paper: {
     height: 200,
@@ -51,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    padding: "10px 5px 5px 5px",
   }
 }));
 
@@ -69,16 +74,9 @@ const { loading, error, data } = useQuery(GET_PRODUCTS);
 
   return (
 
-        <Grid container justify="center" className={classes.root}spacing={spacing}>
+        <Grid container className={classes.root}spacing={spacing}>
           {data.products.map((product) => (
-            <Grid key={product.sku} item>
-              <Paper className={classes.paper}  >
-                <div className={classes.product}>
-                  <img className={classes.thumb} src={product.image_urls[0]}></img>
-                  <Typography color="secondary">{product.title}</Typography>
-                </div>
-              </Paper>
-            </Grid>
+            <ProductItem product={product}/>
           ))}
         </Grid>
         
